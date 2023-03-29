@@ -9,6 +9,7 @@
         "base",
     ],
     "data": [
-        # "views/helpdesk_menu.xml",
+        "security/ir.model.access.csv",
+        "views/helpdesk_menu.xml",
     ],
 }
