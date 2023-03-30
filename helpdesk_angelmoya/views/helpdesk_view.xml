@@ -34,6 +34,18 @@
             <field name="arch" type="xml">
                 <form string="Ticket">
                     <header>  
+                    <!-- - Añadir en el header los siguiente botones: -->
+                    <!-- - Asignar, cambia estado a asignado y pone a true el campo asignado, visible sólo con estado = nuevo -->
+                    <button name="asignar" type="object" string="Asignar" states="nuevo"/>
+                    <!-- - En proceso, visible sólo con estado = asignado -->
+                    <button name="proceso" type="object" string="En proceso" states="asignado"/>
+                    <!-- - Pendiente, visible sólo con estado = en proceso o asignado -->
+                    <button name="pendiente" type="object" string="Pendiente" states="asignado,proceso"/>
+                    <!-- - Finalizar, visible en cualquier estado, menos cancelado y finalizado -->
+                    <button name="finalizar" type="object" string="Finalizar" states="nuevo,asignado,pendiente,proceso"/>
+                    <!-- - Cancelar, visible si no está cancelado -->
+                    <button name="cancelar" type="object" string="Cancelar" states="nuevo,asignado,pendiente,proceso,resuelto"/>
+
                         <field name="state" widget="statusbar" />
                     </header>
 

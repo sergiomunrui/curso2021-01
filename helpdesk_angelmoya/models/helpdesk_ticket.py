@@ -58,4 +58,35 @@ class HelpdeskTicket(models.Model):
 
     # El campo Asignado:
     # - hacer que sea solo de lectura --> hecho en el campo assigned
+    
+    # EJERCICIO2
+    # Añadir en el header los siguiente botones:
+
+    # - Asignar, cambia estado a asignado y pone a true el campo asignado, visible sólo con estado = nuevo        
+    def asignar(self):
+        self.ensure_one()
+        self.write({
+            'state': 'asignado',
+            'assigned': True})
+    
+    # - En proceso, visible sólo con estado = asignado
+    def proceso(self):
+        self.ensure_one()
+        self.state = 'proceso'
+        
+    # - Pendiente, visible sólo con estado = en proceso o asignado
+    def pendiente(self):
+        self.ensure_one()
+        self.state = 'pendiente'
+        
+    # - Finalizar, visible en cualquier estado, menos cancelado y finalizado
+    def finalizar(self):
+        self.ensure_one()
+        self.state = 'resuelto'
+        
+    # - Cancelar, visible si no está cancelado
+    def cancelar(self):
+        self.ensure_one()
+        self.state = 'cancelado'
+
 
