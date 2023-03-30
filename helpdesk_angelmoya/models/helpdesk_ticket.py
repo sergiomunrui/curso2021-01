@@ -9,7 +9,8 @@ class HelpdeskTicket(models.Model):
         required=True
     )
     description = fields.Text(
-        string='Description'
+        string='Description',
+        translate=True      
     )
     date = fields.Date(
         string='Date'
