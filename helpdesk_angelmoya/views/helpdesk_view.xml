@@ -61,6 +61,7 @@
                                 <field name="date_limit"/>
                             </group>
                             <group>
+                                <field name="user_id"/>
                                 <field name="assigned"/>
                                 <field name="time"/>
                             </group>
@@ -68,6 +69,11 @@
                         <notebook>
                             <page string="Description">
                                 <field name="description"/>
+                                <field name="tag_ids"/>
+                            </page>
+                            <page string="Actions">
+                                <field name="action_ids"/>
+                                
                             </page>
                             <page string="Quality">
                                 <group>
