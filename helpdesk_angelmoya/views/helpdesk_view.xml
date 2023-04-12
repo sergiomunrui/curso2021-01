@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!-- En la vista tipo lista mostrar:
-- nombre, fecha, estado -->
+<!-- Vista tipo Lista-->
 
         <record id="view_helpdesk_ticket_tree" model="ir.ui.view">
             <field name="name">view.helpdesk_ticket.tree</field>
@@ -34,7 +33,7 @@
             <field name="arch" type="xml">
                 <form string="Ticket">
                     <header>  
-                    <!-- - Añadir en el header los siguiente botones: -->
+                    <!-- - Botones del header: -->
                     <!-- - Asignar, cambia estado a asignado y pone a true el campo asignado, visible sólo con estado = nuevo -->
                     <button name="asignar" type="object" string="Asignar" states="nuevo"/>
                     <!-- - En proceso, visible sólo con estado = asignado -->
@@ -64,16 +63,22 @@
                                 <field name="user_id"/>
                                 <field name="assigned"/>
                                 <field name="time"/>
+                                <field name="ticket_cantidad"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Description">
                                 <field name="description"/>
+                                <group>
+                                    <field name="tag_name"/>
+                                    <button string="Crear etiqueta"
+                                    name="create_tag"
+                                    type="object"/>
+                                </group>
                                 <field name="tag_ids"/>
                             </page>
                             <page string="Actions">
-                                <field name="action_ids"/>
-                                
+                                <field name="action_ids"/> 
                             </page>
                             <page string="Quality">
                                 <group>
