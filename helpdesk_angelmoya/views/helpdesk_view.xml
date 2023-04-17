@@ -94,4 +94,69 @@
             </field>
         </record>
 
+        <!-- Vista tipo Search-->
+
+        <record id="view_helpdesk_ticket_search" model="ir.ui.view">
+            <field name="name">view.helpdesk_ticket.search</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <search string="Ticket">
+                    <!-- Búsquedas-->
+                    <field name="name" /> <!-- filtra por nombre -->
+                    <field name="user_id" /> <!-- filtra por assigned to -->
+                    <field name="date" /> <!-- filtra por fecha si lo introducido está en formato dd-mm-aaa -->
+                    <field name="state" /> <!-- filtra por estado -->
+                    <field name="description" /> <!-- filtra por descripción-->
+                    <!-- Búsquedas con filtros con dominio aplicado-->
+                    <filter string='Asignado' name='assigned_to' domain="[('user_id', '!=', False)]"/>
+                    <filter string='Date limit' name='date_limit' domain="[('date_limit', '!=', False)]"/>
+                    <filter string='No date limit' name='date_limit' domain="[('date_limit', '=', False)]"/>
+                    <!-- Agrupado por-->
+                    <filter string="Asignado a" name="assigned_to" context="{'group_by':'user_id'}"/>
+                    <filter string="Fecha límite" name="fecha limite" context="{'group_by':'date_limit'}"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Vista pivot-->
+        <record id="view_helpdesk_ticket_pivot" model="ir.ui.view">
+            <field name="name">view.helpdesk_ticket.pivot</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <pivot string="Ticket">
+                    <field name="user_id" type="row"/>
+                    <field name="date" interval="month" type="col"/>
+                    <field name="time" type="measure" widget="float_time"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!--Vista graph-->
+
+        <record id="view_helpdesk_ticket_graph" model="ir.ui.view">
+            <field name="name">view.helpdesk_ticket.graph</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <graph string="Ticket">
+                    <field name="user_id"/>
+                    <field name="time" type="measure" widget="float_time"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <!--Vista calendar-->
+        <record id="view_helpdesk_ticket_calendar" model="ir.ui.view">
+            <field name="name">view.helpdesk_ticket.calendar</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="arch" type="xml">
+                <calendar string="Tickets" date_start="date" color="user_id" hide_time="true" event_limit="5">
+                    <field name="user_id" avatar_field="image_128"/>
+                    <field name="name"/>
+                    <field name="user_id" filters="1" invisible="1"/>
+                </calendar>
+            </field>
+        </record>
+
 </odoo>

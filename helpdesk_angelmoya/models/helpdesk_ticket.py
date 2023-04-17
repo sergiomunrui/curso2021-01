@@ -149,7 +149,7 @@ class HelpdeskTicket(models.Model):
             other_tickets = self.env['helpdesk.ticket'].search([('user_id', '=', record.user_id.id)]) # Buscamos los usuarios que coincidan con ese user_id y guardamos en un array
             record.ticket_cantidad = len(other_tickets) # Guardamos en el campo ticket_cantidad el número de elementos del array other_tickets
             
-    # crear un campo nombre de etiqueta, y hacer un botón que ree la nueva etiqeuta con ese nombre y lo asocie al ticket
+    # crear un campo nombre de etiqueta, y hacer un botón que cree la nueva etiqueta con ese nombre y lo asocie al ticket
     tag_name = fields.Char(
         string='Nombre Etiqueta'
     )
